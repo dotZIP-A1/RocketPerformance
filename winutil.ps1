@@ -14,7 +14,7 @@ Add-Type -AssemblyName System.Drawing
 
 # --- MAIN FORM CANVAS SETUP ---
 $form = New-Object System.Windows.Forms.Form
-$form.Text = "Rocket Performance Utility (Winutil Style)"
+$form.Text = "Rocket Performance Utility Tool"
 $form.Width = 700
 $form.Height = 600
 $form.StartPosition = "CenterScreen"
