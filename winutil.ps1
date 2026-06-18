@@ -1,7 +1,6 @@
 # ===================================================================
-# INITIALIZATION & ADMIN CHECK (UPGRADE)
+# INITIALIZATION & ADMIN CHECK
 # ===================================================================
-# This block ensures the user is running the script with Admin rights.
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 if (-not $isAdmin) {
     [System.Windows.Forms.MessageBox]::Show("This utility requires Administrator privileges to modify system settings. The script will now attempt to restart as Admin.", "Admin Required", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Warning)
@@ -88,7 +87,7 @@ $actTelem = {
 }
 $actTemp = {
     Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
-    RunDll32.exe jscript.dll,OpenHTMLPage javascript:void(new%20ActiveXObject('Shell.Application').Windows().Item(0).Document.Application.EmptyRecycleBin());window.close();
+    Clear-RecycleBin -Force -ErrorAction SilentlyContinue
     Show-Msg "Temp Directories and Recycle Bin Emptied!"
 }
 $actMouse = {
@@ -155,7 +154,7 @@ Add-ControlBtn $tabApps "Install Discord App" 340 155 $actInsDiscord
 
 
 # ===================================================================
-# TAB 3: MISC / CONFIG DEBLOAT (FIXED ORDERING)
+# TAB 3: MISC / CONFIG DEBLOAT
 # ===================================================================
 Add-TabHeader $tabMisc "Windows System Debloating" 30 20
 Add-TabHeader $tabMisc "Network & Core Troubleshooting" 340 20
@@ -199,6 +198,6 @@ Add-ControlBtn $tabMisc "Reset Network & Flush DNS Cache" 340 105 $actNetReset
 
 
 # ===================================================================
-# FINAL LAUNCH LOOP (MUST BE AT THE VERY BOTTOM)
+# FINAL LAUNCH LOOP
 # ===================================================================
 $form.ShowDialog()
