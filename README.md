@@ -38,7 +38,7 @@ Run the utility directly from PowerShell.
 ### 2. Execute the following command
 
 ```powershell
-irm "https://raw.githubusercontent.com/dotZIP-A1/RocketPerformance/main/winutil.ps1" | iex
+irm "https://raw.githubusercontent.com/dotZIP-A1/RocketPerformance/main/RocketPerformance.ps1" | iex
 ```
 
 The script will automatically request Administrator privileges if they are not already granted.
